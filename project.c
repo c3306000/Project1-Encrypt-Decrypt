@@ -7,7 +7,7 @@ int main()
     int key;
     int i = 0;
     printf("Enter text: \n");
-    scanf("%c", )
+    scanf("%c", &word[100]);
     printf("Enter a key between 0 and 26: /n");
     scanf("%d", &key);
     
@@ -24,7 +24,7 @@ int main()
     {
         word[i] = word[i] + key;
     }
-    for(i = 0; i < strlen; i++)
+    for(i = 0; i < strlen(word); i++)
     {
         word[i] = word[i] -26;
     }
