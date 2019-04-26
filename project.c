@@ -26,3 +26,25 @@ int main()
     printf("Encoded message is: %s", word);
     return 0;
 }
+char word[100];
+    char text;
+    int key;
+    int i;
+    
+    printf("Enter cipher text: ");
+    scanf("%s", word);
+    printf("Enter rotation key: ");
+    scanf("%d", &key);
+    
+    for(i = 0; word[i] != '0'; i++)
+    {
+        text = word[i];
+        text = text - key;
+        if(text >= 'Z')
+        {
+            text = text - 32;
+        }
+        word[i] = text;
+    }
+    printf("Decoded text is: %s", word);
+    return 0;
