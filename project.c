@@ -1,9 +1,9 @@
-#include <stdio.h>
+\#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 int main()
 {
-    char word[100];
+    char word[100]; // rotation cipher encode working
     char text;
     int key;
     int i;
@@ -26,7 +26,11 @@ int main()
     printf("Encoded message is: %s", word);
     return 0;
 }
-char word[100];
+
+
+
+
+char word[100]; // rotation cipher decode working
     char text;
     int key;
     int i;
@@ -36,7 +40,7 @@ char word[100];
     printf("Enter rotation key: ");
     scanf("%d", &key);
     
-    for(i = 0; word[i] != '0'; i++)
+    for(i = 0; word[i] != '\0'; i++)
     {
         text = word[i];
         text = text - key;
@@ -48,3 +52,4 @@ char word[100];
     }
     printf("Decoded text is: %s", word);
     return 0;
+}
