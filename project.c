@@ -105,50 +105,48 @@ char *rotationd()
 char *substitutione()
 {
     char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    char subinput[26];
-    char store;
-    char message;
-    static char text[1000];
-    int i;
-    int b;
-    int c;
+    char store[26];
+    char STORE;
+    char TEXT;
+    static char text[100];
+    int i, j, k;
     
     printf("Enter message to encode: ");
-    scanf("%s", text);
+    scanf("%s", &text);
     printf("Enter letter substitutions: ");
-    scanf("%s", subinput);
+    scanf("%s", &store);
     
-    for(c = 0; subinput[i] != '\0'; i++)
+    for(k = 0; store[i] != '\0'; i++)
     {
-        store = subinput[i];
-        if(store >= 'a' && store <= 'z')
+        STORE = store[i];
+        if(STORE >= 'a' && STORE <= 'z')
         {
-            store = store - 32;
+            STORE = STORE - 32;
         }
-        subinput[i] = store;
+        store[i] = STORE;
     }
     
     printf("Character substitutions are:\n");
     printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
-    printf("%s", subinput);
+    printf("%s\n", store);
     
     for(i = 0; text[i] != '\0'; i++)
     {
-        message = text[i];
-        if(message >= 'a' && message <= 'z')
+        TEXT = text[i];
+        if(TEXT >= 'a' && TEXT <= 'z')
         {
-            message = message - 32;
+            TEXT = TEXT - 32;
         }
-        text[i] = message;
+        text[i] = TEXT;
     }
     
-    for(i = 0; i < sizeof(text) / sizeof(text[0]); i++)
+    for(i = 0; i < sizeof(text)/sizeof(text[0]); i++)
     {
-        for(b = 0; b < sizeof(alphabet) / sizeof(alphabet[0]); b++)
+        for(j = 0; j < sizeof(alphabet)/sizeof(alphabet[0]); j++)
         {
-            if(text[i] == alphabet[b])
+            if(text[i] == alphabet[j])
             {
-                text[i] = subinput[b];
+                text[i] = store[j];
                 break;
             }
         }
@@ -158,19 +156,44 @@ char *substitutione()
 
 char *substitutiond()
 {
-    char alphabet[26]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
-    char subinput[26];
-    char store;
-    char message;
+    char alphabet[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
+    char store[26];
+    char STORE;
+    char TEXT;
     static char text[1000];
-    int i;
-    int b;
-    int c;
+    int i, j, k;
     
     printf("Enter text to decode: ")
-    scanf("%s", text);
+    scanf("%s", &text);
     printf("Enter letter substitutions: ");
-    scanf("%s", subinput)
+    scanf("%s", &store);
+    
+    for(k = 0; store[i] != '\0'; i++)
+    {
+        STORE = store[i];
+        if(STORE >= 'a' && STORE <= 'z')
+        {
+            STORE = STORE - 32;
+        }
+        store[i] = STORE;
+    }
+    
+    printf("Character substitutions are:\n");
+    printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
+    printf("%s\n", store);
+    
+    for(i = 0; i < sizeof(text) / sizeof(text[0]); i++)
+    {
+        for(j = 0; j < sizeof(alphabet) / sizeof(alphabet[0]); j++)
+        {
+            if(text[i] == store[j])
+            {
+                text[i] = alphabet[j];
+                break;
+            }
+        }
+    }
+    return text;
 }
 
 
