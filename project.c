@@ -44,7 +44,7 @@ char *rotatione()
     int i;
     
     printf("Enter text: ");
-    scanf("%s", word); // Tried to use 'get', got compiler warning saying it was dangerous so changed to scanf. No & symbol as it is a string
+    scanf("%s", &word); // Tried to use 'get', got compiler warning saying it was dangerous so changed to scanf. No & symbol as it is a string
     printf("Enter key: ");
     scanf("%d", &key);
     
@@ -77,7 +77,7 @@ char *rotationd()
     int i;
     
     printf("Enter cipher text: ");
-    scanf("%s", word);
+    scanf("%s", &word);
     printf("Enter rotation key: ");
     scanf("%d", &key);
     
