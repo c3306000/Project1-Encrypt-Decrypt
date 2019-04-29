@@ -66,12 +66,12 @@ char *rotatione()
         }
     }
     printf("Encoded message is: %s", word);
-    return 0;
+    return word;
 }
 
 char *rotationd()
 {
-    char word[100]; // rotation cipher decode working
+    char word[1000]; // rotation cipher decode working
     char text;
     int key;
     int i;
@@ -99,10 +99,71 @@ char *rotationd()
         word[i] = text;
     }
     printf("Decoded text is: %s", word);
-    return 0;
+    return word;
 }
 
 char *substitutione()
 {
+    char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    char subinput[26];
+    char store;
+    char message;
+    static char text[1000];
+    int i;
+    int b;
+    int c;
+    
+    printf("Enter message to encode: ");
+    scanf("%s", text);
+    printf("Enter letter substitutions: ");
+    scanf("%s", subinput);
+    
+    for(c = 0; subinput[i] != '\0'; a++)
+    {
+        store = subinput[i];
+        if(store >= 'a' && store <= 'z')
+        {
+            store = store - 32;
+        }
+        subinput[i] = store;
+    }
+    
+    printf("Character substitutions are:\n");
+    printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
+    printf("||||||||||||||||||||||||||\n");
+    printf("%s", subinput);
+    
+    for(i = 0; text[i] != '\0'; i++)
+    {
+        message = text[i];
+        if(message >= 'a' && message <= 'z')
+        {
+            message = message - 32;
+        }
+        text[i] = message;
+    }
+    
+    for(i = 0; i < sizeof(text) / sizeof(text[0]); i++)
+    {
+        for(b = 0; b < sizeof(alphabet) / sizeof(alpabet[0]); b++)
+        {
+            if(text[i] == alphabet[b])
+            {
+                text[i] = subinput[b];
+                break;
+            }
+        }
+    }
+    return text
+}
+
+char *substitutiond()
+{
     
 }
+
+
+
+
+
+
