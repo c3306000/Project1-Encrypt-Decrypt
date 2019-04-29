@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h> // Added just in case
-char *rotatione();
+char *rotatione(); // list of functions to be called
 char *rotationd();
 char *substitutione();
 char *substitutiond();
-char *rotationd2();
-char substitutiond2();
 
 int main()
 {
+    //add a 'menu' so users can choose what function they want to test
    int choice;
    printf("Enter 1 for rotation cipher encryption\n");
    printf("Enter 2 for rotation cipher decryption\n");
@@ -17,7 +16,7 @@ int main()
    printf("Enter 4 for substitution cipher decryption\n");
    printf("Enter 5 for rotation cipher decryption without key\n");
    printf("Enter 6 for substitution cipher decryption without key\n");
-   printf("Enter your choice: ")
+   printf("Enter your choice: ");
    scanf("%d", &choice);
    if(choice == 1){
        printf("Encrypted message is: %s", rotatione());
@@ -32,14 +31,14 @@ int main()
    }else if(choice == 6){
        printf("Decrypted message is: %s", substitutiond2());
    }else{
-       printf("Enter an appropriate number: ")
+       printf("Enter an appropriate number: ");
    }
    return 0;
 }   
 
 char *rotatione()
 {
-    char word[1000]; // rotation cipher encode working
+    char word[100]; // array of 100 as only one word is being encoded 
     char text;
     int key;
     int i;
@@ -54,16 +53,17 @@ char *rotatione()
         text = word[i];
         if(text >= 'a' && text <= 'z')
         {
-            text = text - 32;
+            text = text - 32; // ensures lower case letters are changed to upper case
         }
         if(text >= 'A' && text <= 'Z')
         {
-            text = text + key;
+            text = text + key; // after everything is upper case the rotation is implemented
             if(text > 'Z')
             {
-                text = text - 26;
+                text = text - 26; // if the rotation goes past 'Z', this if statement rotates it back to 'A'
             }
         }
+        word[i] = text;
     }
     printf("Encoded message is: %s", word);
     return word;
@@ -71,7 +71,7 @@ char *rotatione()
 
 char *rotationd()
 {
-    char word[1000]; // rotation cipher decode working
+    char word[100]; // Array size of 100 as only one word is being tested
     char text;
     int key;
     int i;
@@ -81,19 +81,19 @@ char *rotationd()
     printf("Enter rotation key: ");
     scanf("%d", &key);
     
-    for(i = 0; word[i] != '\0'; i++)
+    for(i = 0; word[i] != '\0'; i++) // Ensures loop exits if word[i] is equal to the terminating null of the string
     {
         text = word[i];
         if(text >= 'a' && text <= 'z')
         {
-            text = text - 32;
+            text = text - 32; //ensures lower case letters are changed to upper case
         }
         if(text >= 'A' && text <= 'Z')
         {
-            text = text - key;
+            text = text - key; // once everything is upper case, rotation happens back towards the start of the alphabet to decode
             if(text < 'A')
             {
-                text = text + 26;
+                text = text + 26; // if rotation goes past 'A', rotates back to 'Z'
             }
         }
         word[i] = text;
@@ -104,12 +104,15 @@ char *rotationd()
 
 char *substitutione()
 {
+    // initialise one array to be upper case alphabet and an empty array to store the letter substitutions
     char alphabet[26] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
     char store[26];
+    static char text[100];
     char STORE;
     char TEXT;
-    static char text[100];
-    int i, j, k;
+    int i;
+    int j;
+    int k;
     
     printf("Enter message to encode: ");
     scanf("%s", &text);
@@ -121,21 +124,17 @@ char *substitutione()
         STORE = store[i];
         if(STORE >= 'a' && STORE <= 'z')
         {
-            STORE = STORE - 32;
+            STORE = STORE - 32; // ensures lower case letters are changed to upper case
         }
         store[i] = STORE;
     }
-    
-    printf("Character substitutions are:\n");
-    printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
-    printf("%s\n", store);
     
     for(i = 0; text[i] != '\0'; i++)
     {
         TEXT = text[i];
         if(TEXT >= 'a' && TEXT <= 'z')
         {
-            TEXT = TEXT - 32;
+            TEXT = TEXT - 32; // ensures everything is upper case
         }
         text[i] = TEXT;
     }
@@ -158,12 +157,14 @@ char *substitutiond()
 {
     char alphabet[26] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
     char store[26];
+    static char text[100];
     char STORE;
     char TEXT;
-    static char text[1000];
-    int i, j, k;
+    int i;
+    int j;
+    int k;
     
-    printf("Enter text to decode: ")
+    printf("Enter text to decode: ");
     scanf("%s", &text);
     printf("Enter letter substitutions: ");
     scanf("%s", &store);
@@ -173,14 +174,20 @@ char *substitutiond()
         STORE = store[i];
         if(STORE >= 'a' && STORE <= 'z')
         {
-            STORE = STORE - 32;
+            STORE = STORE - 32; // ensures lower case letters are changed to upper case
         }
         store[i] = STORE;
     }
     
-    printf("Character substitutions are:\n");
-    printf("ABCDEFGHIJKLMNOPQRSTUVWXYZ\n");
-    printf("%s\n", store);
+    for(i = 0; text[i] != '\0'; i++)
+    {
+        TEXT = text[i];
+        if(TEXT >= 'a' && TEXT <= 'z')
+        {
+            TEXT = TEXT - 32;
+        }
+        text[i] = TEXT;
+    }
     
     for(i = 0; i < sizeof(text) / sizeof(text[0]); i++)
     {
